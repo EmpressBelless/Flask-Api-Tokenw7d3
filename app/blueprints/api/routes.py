@@ -1,4 +1,4 @@
-from . import bp as api
+from . import bp as app
 from app.blueprints.auth.models import User
 from app.blueprints.blog.models import Post
 from flask import jsonify, request
@@ -64,4 +64,25 @@ def update_user(id):
 
 @api.route('/users/<id>', methods=['DELETE'])
 def delete_user(id):
+    pass
+
+@bp.route('/my_posts/', methods=['GET'])
+def get_post(id):
+    my_post = Post.query.get_or_404(id)
+    return jsonify(my_post.to_post())
+
+@bp.route('/my_posts/<id>', methods=['GET'])
+def get_posts(id):
+    my_posts = Post.query.all()
+
+@bp.route('/createpost', methods=['POST'])
+def create_post(id):
+    pass
+
+@bp.route('/my_posts/<id>', methods=['PUT'])
+def update_post(id):
+    pass
+
+@bp.route('/my_posts/<id>', methods=['DELETE'])
+def delete_post(id):
     pass
